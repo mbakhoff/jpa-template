@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class Person {
+public abstract class Person {
 
   @Id
   @GeneratedValue

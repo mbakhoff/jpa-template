@@ -3,7 +3,6 @@ package petclinic.actions;
 import petclinic.model.Vet;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 
 public class AddSpeciality extends TransactionalCommand {
   public AddSpeciality() {
@@ -19,11 +18,11 @@ public class AddSpeciality extends TransactionalCommand {
 
     Long id = Long.parseLong(params[1]);
     String speciality = params[2];
-    try {
-      Vet vet = entityManager.find(Vet.class, id);
-      vet.addSpecialty(speciality);
-    } catch (NoResultException e) {
+    Vet vet = entityManager.find(Vet.class, id);
+    if (vet == null) {
       System.out.println("No vets matched.");
+      return;
     }
+    vet.addSpecialty(speciality);
   }
 }
