@@ -25,8 +25,6 @@ public class Owner extends Person {
 
   @Override
   public String toString() {
-    return super.toString() + " + Owner{" +
-        "pets=" + pets +
-        '}';
+    return super.toString() + " + Owner";
   }
 }
