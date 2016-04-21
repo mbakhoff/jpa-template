@@ -35,7 +35,7 @@ Most of the operations are performed through the *javax.persistence.EntityManage
     Long id = 42;
     Vet vet = entityManager.find(Vet.class, id);
 
-### Retreiving objects using parametric queries
+### Retreiving objects using JPQL parametric queries
 
     Vet vet = entityManager.createQuery("from Vet v where v.id = :id", Vet.class)
         .setParameter("id", id)
