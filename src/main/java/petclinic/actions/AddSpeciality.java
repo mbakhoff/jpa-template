@@ -5,6 +5,7 @@ import petclinic.model.Vet;
 import javax.persistence.EntityManager;
 
 public class AddSpeciality extends TransactionalCommand {
+
   public AddSpeciality() {
     super("addspec");
   }

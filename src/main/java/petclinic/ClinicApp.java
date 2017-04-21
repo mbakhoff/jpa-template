@@ -12,11 +12,11 @@ import java.util.Scanner;
 
 public class ClinicApp {
   private final EntityManagerFactory entityManagerFactory;
-  private final List<Processor> processors;
+  private final List<CommandHandler> commandHandlers;
 
   public ClinicApp(EntityManagerFactory entityManagerFactory) {
     this.entityManagerFactory = entityManagerFactory;
-    this.processors = loadProcessors();
+    this.commandHandlers = loadCommandHandlers();
   }
 
   public void run(Scanner console) throws Exception {
@@ -28,8 +28,8 @@ public class ClinicApp {
 
       EntityManager entityManager = entityManagerFactory.createEntityManager();
       try {
-        for (Processor processor : processors) {
-          processor.process(entityManager, command);
+        for (CommandHandler commandHandler : commandHandlers) {
+          commandHandler.handleCommand(entityManager, command);
         }
       } finally {
         entityManager.close();
@@ -37,7 +37,7 @@ public class ClinicApp {
     }
   }
 
-  private List<Processor> loadProcessors() {
+  private List<CommandHandler> loadCommandHandlers() {
     return Arrays.asList(
         new ViewVets(),
         new AddVet(),

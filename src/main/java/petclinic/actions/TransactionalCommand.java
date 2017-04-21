@@ -1,11 +1,11 @@
 package petclinic.actions;
 
-import petclinic.Processor;
+import petclinic.CommandHandler;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-public abstract class TransactionalCommand implements Processor {
+public abstract class TransactionalCommand implements CommandHandler {
 
   private final String commandPrefix;
 
@@ -14,7 +14,7 @@ public abstract class TransactionalCommand implements Processor {
   }
 
   @Override
-  public void process(EntityManager entityManager, String command) throws Exception {
+  public void handleCommand(EntityManager entityManager, String command) throws Exception {
     if (!command.startsWith(commandPrefix))
       return;
 
