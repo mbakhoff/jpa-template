@@ -138,8 +138,8 @@ The performance is much better when all the changes are gathered first and then 
 The data is actually written to the database (flushed) on the following events:
 
 + prior to committing a Transaction
-+ prior to executing a JPQL query that overlaps with the queued entity actions
-+ before executing any native SQL query
++ prior to executing a JPQL query (sometimes)
++ before executing any manually written SQL queries
 
 ## Tradeoffs when using ORMs
 
