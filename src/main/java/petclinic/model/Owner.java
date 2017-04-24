@@ -10,7 +10,7 @@ import java.util.Set;
 @Entity
 public class Owner extends Person {
 
-  // one Owner has many Pets
+  // one Owner can have many Pets
   @OneToMany(cascade = CascadeType.ALL)
   private Set<Pet> pets = new HashSet<>();
 
