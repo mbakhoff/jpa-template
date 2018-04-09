@@ -12,7 +12,7 @@ public class ViewVets extends TransactionalCommand {
   }
 
   @Override
-  protected void run(EntityManager entityManager, String[] params) throws Exception {
+  protected void handleInTransaction(EntityManager entityManager, String command) throws Exception {
     List<Vet> vets = entityManager.createQuery("from Vet", Vet.class).getResultList();
     if (vets.isEmpty()) {
       System.out.println("No vets.");

@@ -11,7 +11,8 @@ public class AddSpeciality extends TransactionalCommand {
   }
 
   @Override
-  protected void run(EntityManager entityManager, String[] params) throws Exception {
+  protected void handleInTransaction(EntityManager entityManager, String command) throws Exception {
+    String[] params = command.split(" ");
     if (params.length != 3) {
       System.out.println("addspec <vet-id> <speciality>");
       return;

@@ -4,15 +4,19 @@
              version="2.0">
   <persistence-unit name="petClinic">
     <properties>
-      <!-- see https://goo.gl/vu1ZmX for all properties supported by hibernate -->
+      <!--
+      all properties supported by hibernate:
+      https://github.com/hibernate/hibernate-orm/blob/master/documentation/src/main/asciidoc/userguide/appendices/Configurations.adoc
+       -->
+
       <!-- database driver; make sure to add as maven dependency -->
-      <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
+      <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
       <!-- database url; see http://h2database.com/html/cheatSheet.html -->
-      <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:petClinic" />
+      <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:petClinic"/>
       <!-- automatically create tables based on java classes -->
-      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
+      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
       <!-- log all executed sql commands to console for debugging -->
-      <property name="hibernate.show_sql" value="true" />
+      <property name="hibernate.show_sql" value="true"/>
     </properties>
   </persistence-unit>
 </persistence>

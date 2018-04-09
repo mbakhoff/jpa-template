@@ -16,12 +16,12 @@ Both of these tasks are very repetitive, tedious and follow simple generic rules
 In this practice we'll take a look at Hibernate ORM (object-relational mapper) - a Java library that can automatically store objects into a database and retreive them.
 
 Hibernate has a mostly decent user guide available at
-https://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html
+https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html
 
 ## JPA (Java Persistence API) examples
 
 Hibernate implements JPA, an API for storing, updating, deleting and querying objects.
-Most of the operations are performed through the *javax.persistence.EntityManager* class.
+Most of the operations are performed through the `javax.persistence.EntityManager` class.
 
 ### Storing an object into the database
 ```
@@ -84,10 +84,10 @@ Also, each new user request would load fresh data from the database.
 
 Using JPA in your application usually looks like the following:
 
-+ Configure the database settings in META-INF/persistence.xml
-+ Create a single EntityManagerFactory based on the persistence.xml configuration
-+ For each user request, create a new EntityManager using the EntityManagerFactory, do work with the EntityManager and then close the EntityManager
-+ Close the EntityManagerFactory
+* Configure the database settings in META-INF/persistence.xml
+* Create a single EntityManagerFactory based on the persistence.xml configuration
+* For each user request, create a new EntityManager using the EntityManagerFactory, do work with the EntityManager and then close the EntityManager
+* Close the EntityManagerFactory on application shutdown
 
 The persistence.xml configuration file must contain all the information required by Hibernate to connect to the database and find your application's classes.
 The two required properties are the database driver's class name and the database connection url.
@@ -109,6 +109,17 @@ try {
   entityManagerFactory.close();
 }
 ```
+
+## JPA annotations
+
+Starting up Hibernate (creating an `EntityManagerFactory`) is quite slow, because it does a lot of magic.
+Hibernate will first find all classes in the application and search them for JPA annotations (annotations in `javax.persistence` package).
+When some class contains the `@Entity` annotation, then Hibernate will assume that objects of that class will be stored in the database.
+The entity classes are further inspected for other JPA annotations.
+For example, an entity may contains the `@OneToMany` annotation to describe relations to other classes.
+
+It's important to understand that the annotations on their own don't do anything - they are static information.
+They only cause effects because Hibernate is searching for them and using their information for configuration.
 
 ## A word about transactions and syncing with the database
 
@@ -137,9 +148,9 @@ The performance is much better when all the changes are gathered first and then 
 
 The data is actually written to the database (flushed) on the following events:
 
-+ prior to committing a Transaction
-+ prior to executing a JPQL query (sometimes)
-+ before executing any manually written SQL queries
+* prior to committing a Transaction
+* prior to executing a JPQL query (sometimes)
+* before executing any manually written SQL queries
 
 ## Tradeoffs when using ORMs
 
@@ -148,11 +159,11 @@ As always, magic has it's upsides and downsides.
 Many projects use Hibernate or some other ORM library, but just as many don't use it.
 Some reasons for not using an ORM:
 
-+ much more difficult to learn and understand
-+ lots of magic; when something goes wrong, good luck debugging it
-+ endless number of quirks, pitfalls and gotchas
-+ doesn't fully hide SQL - still need to write JPQL for the queries
-+ doesn't make the database disappear - you still need to understand how SQL and ORM work to use them efficiently; you just need to write less queries manually
+* much more difficult to learn and understand
+* lots of magic; when something goes wrong, good luck debugging it
+* endless number of quirks, pitfalls and gotchas
+* doesn't fully hide SQL - still need to write JPQL for the queries
+* doesn't make the database disappear - you still need to understand how SQL and ORM work to use them efficiently; you just need to write less queries manually
 
 # Practice tasks
 
@@ -160,15 +171,16 @@ Complete the following tasks as an excercise.
 When something is unspecified then do what makes most sense.
 When confused, ask a lot of questions.
 
-+ Create an action for adding an owner
-+ Create an action for adding a pet to an owner
-+ Annotate the Pet class so that the pets are stored in a database table called "all_pets" and the pet name is stored in a database column called "pet_name". See the @Table and @Column annotations.
-+ Create an action for viewing all pets
-+ Create an action for viewing pets of the specified owner
-+ Create an action for editing a pet's name
-+ Create a new class Visit. A Visit contains a Pet, a Vet and the description of the visit. Pets and vets can have multiple visits.
-+ Create an action for adding visits
-+ Create an action for viewing all visits of the specified pet
-+ Create an action for deleting the specified Pet
+* Create an action for adding a pet owner
+* Create an action for adding a pet to an owner
+* Annotate the `Pet` class so that the pets are stored in a database table called "all_pets" and the pet name is stored in a database column called "pet_name".
+  See the `@Table` and `@Column` annotations.
+* Create an action for viewing all pets
+* Create an action for viewing pets of the specified owner
+* Create an action for editing a pet's name
+* Create a new class `Visit`. A visit contains a pet, a vet and the description of the visit. Pets and vets can have multiple visits.
+* Create an action for adding visits
+* Create an action for viewing all visits of the specified pet
+* Create an action for deleting the specified pet
 
 *Sample application inspired by https://github.com/spring-projects/spring-petclinic*

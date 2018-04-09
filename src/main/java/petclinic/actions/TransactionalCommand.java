@@ -14,14 +14,14 @@ public abstract class TransactionalCommand implements CommandHandler {
   }
 
   @Override
-  public void handleCommand(EntityManager entityManager, String command) throws Exception {
+  public void handle(EntityManager entityManager, String command) throws Exception {
     if (!command.startsWith(commandPrefix))
       return;
 
     EntityTransaction transaction = entityManager.getTransaction();
     transaction.begin();
     try {
-      run(entityManager, command.split(" "));
+      handleInTransaction(entityManager, command);
       transaction.commit();
     } catch (Exception e) {
       if (transaction.isActive())
@@ -30,6 +30,6 @@ public abstract class TransactionalCommand implements CommandHandler {
     }
   }
 
-  protected abstract void run(EntityManager entityManager, String[] params) throws Exception;
+  protected abstract void handleInTransaction(EntityManager entityManager, String command) throws Exception;
 
 }
