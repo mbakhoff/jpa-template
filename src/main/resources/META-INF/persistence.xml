@@ -6,7 +6,7 @@
     <properties>
       <!--
       all properties supported by hibernate:
-      https://github.com/hibernate/hibernate-orm/blob/master/documentation/src/main/asciidoc/userguide/appendices/Configurations.adoc
+      https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html#configurations
        -->
 
       <!-- database driver; make sure to add as maven dependency -->
