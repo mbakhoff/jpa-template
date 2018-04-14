@@ -171,7 +171,7 @@ Complete the following tasks as an excercise.
 When something is unspecified then do what makes most sense.
 When confused, ask a lot of questions.
 
-* Create an action for adding a pet owner
+* Create an action for adding an owner
 * Create an action for adding a pet to an owner
 * Annotate the `Pet` class so that the pets are stored in a database table called "all_pets" and the pet name is stored in a database column called "pet_name".
   See the `@Table` and `@Column` annotations.

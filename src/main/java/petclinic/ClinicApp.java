@@ -20,6 +20,15 @@ public class ClinicApp {
     this.commandHandlers = loadCommandHandlers();
   }
 
+  private List<CommandHandler> loadCommandHandlers() {
+    return Arrays.asList(
+        new ViewVets(),
+        new AddVet(),
+        new AddSpeciality()
+        // TODO add your actions here
+    );
+  }
+
   public void runInteractive() throws Exception {
     try (Scanner console = new Scanner(System.in)) {
       while (true) {
@@ -38,14 +47,5 @@ public class ClinicApp {
         }
       }
     }
-  }
-
-  private List<CommandHandler> loadCommandHandlers() {
-    return Arrays.asList(
-        new ViewVets(),
-        new AddVet(),
-        new AddSpeciality()
-        // TODO add your actions here
-    );
   }
 }
