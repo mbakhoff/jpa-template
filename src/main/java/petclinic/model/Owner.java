@@ -3,7 +3,6 @@ package petclinic.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +14,7 @@ public class Owner extends Person {
   private Set<Pet> pets = new HashSet<>();
 
   public Set<Pet> getPets() {
-    return Collections.unmodifiableSet(this.pets);
+    return this.pets;
   }
 
   public void addPet(Pet pet) {

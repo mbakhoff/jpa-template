@@ -2,7 +2,6 @@ package petclinic.model;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,7 +12,7 @@ public class Vet extends Person {
   private Set<String> specialties = new HashSet<>();
 
   public Set<String> getSpecialties() {
-    return Collections.unmodifiableSet(this.specialties);
+    return this.specialties;
   }
 
   public void addSpecialty(String specialty) {

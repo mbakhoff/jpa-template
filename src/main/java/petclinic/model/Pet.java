@@ -56,7 +56,8 @@ public class Pet {
   @Override
   public String toString() {
     return "Pet{" +
-        "name='" + name + '\'' +
+        "id=" + id +
+        ", name='" + name + '\'' +
         ", birthDate=" + birthDate +
         ", owner=" + owner +
         '}';
