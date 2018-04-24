@@ -1,19 +1,29 @@
 package petclinic.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@Table(name = "all_pets")
 public class Pet {
 
   @Id
   @GeneratedValue
   private Long id;
 
+  @Column(name = "pet_name")
   private String name;
+
+  @OneToMany(mappedBy = "pet")
+  private Set<Visit> visits = new HashSet<>();
 
   private LocalDate birthDate;
 
@@ -51,6 +61,14 @@ public class Pet {
 
   public void setOwner(Owner owner) {
     this.owner = owner;
+  }
+
+  public Set<Visit> getVisits() {
+    return visits;
+  }
+
+  public void setVisits(Set<Visit> visits) {
+    this.visits = visits;
   }
 
   @Override

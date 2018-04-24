@@ -1,8 +1,16 @@
 package petclinic;
 
+import petclinic.actions.AddOwner;
+import petclinic.actions.AddPetToOwner;
 import petclinic.actions.AddSpeciality;
 import petclinic.actions.AddVet;
+import petclinic.actions.AddVisit;
+import petclinic.actions.DeletePet;
+import petclinic.actions.EditPetName;
+import petclinic.actions.ViewPets;
+import petclinic.actions.ViewPetsOfOwner;
 import petclinic.actions.ViewVets;
+import petclinic.actions.ViewVisits;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -24,8 +32,15 @@ public class ClinicApp {
     return Arrays.asList(
         new ViewVets(),
         new AddVet(),
-        new AddSpeciality()
-        // TODO add your actions here
+        new AddSpeciality(),
+        new AddOwner(),
+        new AddPetToOwner(),
+        new ViewPets(),
+        new ViewPetsOfOwner(),
+        new EditPetName(),
+        new AddVisit(),
+        new ViewVisits(),
+        new DeletePet()
     );
   }
 
